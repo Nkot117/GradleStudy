@@ -14,6 +14,22 @@ plugins {
     // JavaのCLIアプリケーションをビルドするためのプラグイン
     // gradlw tasks で使えるコマンドを確認できる
     application
+
+    // GradleプロジェクトをMavenリポジトリに公開するためのプラグイン
+    id("maven-publish")
+}
+
+// Mavenリポジトリに公開するための設定
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = "com.gradle.tutorial"
+            artifactId = "tutorial"
+            version = "1.0"
+
+            from(components["java"])
+        }
+    }
 }
 
 // ライブラリの取得先のリポジトリを設定
